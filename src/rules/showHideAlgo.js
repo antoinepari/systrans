@@ -16,31 +16,29 @@ function sortFragmentsArray(array) {
 
 /**
  * This algo will determine only the fragments to hide
- * @returns {Array} Array with all name of fragments which are not visible but still at show
+ * @param {Number} aMaxCode - aMaxCode can be defined
+ * @returns {Array} Array with all names of fragments which are not visible but still at show
  */
-function showOrHideAlgo() {
-  let hiddenFragments = [];
+function showOrHideAlgo(aMaxCode) {
+  let unvisibleFragments = [];
+  let visibleFragments = [];
 
   // Get the max code
-  const maxCode = Math.max(
-    ...allReceivedFragments.map((fragment) => fragment.code),
-  );
+  const maxCode = aMaxCode || aMaxCode === 0 ? aMaxCode : Math.max(...allReceivedFragments.map((fragment) => fragment.code));
   // Get all fragments with the higher code
   let updatedFragments = allReceivedFragments.filter((item) => {
     if (item.code === maxCode) {
       return item;
     }
-    // Add fragments to hiddenFragments
-    hiddenFragments.push(item.name);
+    // Add fragment to unvisibleFragments
+    unvisibleFragments.push(item.name);
     return null;
   });
 
   // If only one fragment => algo stops
   if (updatedFragments.length === 1) {
-    updatedFragments.forEach((fragment) =>
-      fragment.isShowed === false ? '' : console.log(fragment.name),
-    );
-    return hiddenFragments;
+    visibleFragments.push(updatedFragments[0].name);
+    return {visibleFragments, unvisibleFragments};;
   }
 
   // If it remains multiple fragments => we need to check if all can be displayed or not
@@ -61,8 +59,9 @@ function showOrHideAlgo() {
     }
     // If pos are equal
     if (JSON.stringify(pivot.pos) === JSON.stringify(fragment.pos)) {
-      // If both pos are equal and last layer is simultaneous, change the pivot
+      // If both pos are equal and last layer is simultaneous, add the pivot to visibleFragments and update the pivot
       if (pivot.pos[pivot.pos.length - 1].charAt(0) === 's') {
+        visibleFragments.push(pivot.name);
         pivot = fragment;
         pivotIndex = index;
       }
@@ -70,29 +69,28 @@ function showOrHideAlgo() {
       else if (pivot.pos[pivot.pos.length - 1].charAt(0) === 'p') {
         if (pivot.priority > fragment.priority) {
           updatedFragments[index].isShowed = false;
-          hiddenFragments.push(fragment.name);
+          unvisibleFragments.push(fragment.name);
         }
         // Delete the current pivot and update it with this fragment
         else {
           updatedFragments[pivotIndex].isShowed = false;
-          hiddenFragments.push(pivot.name);
+          unvisibleFragments.push(pivot.name);
           pivot = fragment;
           pivotIndex = index;
         }
       }
     }
-    // If pos are different then the pivot needs to change
+    // If pos are different then the former pivot is added to visibleFragments and the pivot updates
     else {
+      visibleFragments.push(pivot.name);
       pivot = fragment;
       pivotIndex = index;
     }
   });
+  // Add the last fragment of the array inside the visible fragments because no other did indicate the opposite
+  visibleFragments.push(pivot.name);
 
-  // Display only the fragments to show (no need for the algo but interesting to verify)
-  updatedFragments.forEach((fragment) =>
-    fragment.isShowed === false ? '' : console.log(fragment.name),
-  );
-  return hiddenFragments;
+  return {visibleFragments, unvisibleFragments};
 }
 
 /**
@@ -110,6 +108,13 @@ function showCmdReceived(fragmentName) {
  */
 function hideCmdReceived(fragmentName) {
   allReceivedFragments = allReceivedFragments.filter(fragment => fragment.name !== fragmentName)
+}
+
+function callAlgo() {
+  let fragments = showOrHideAlgo(0);
+  console.log(fragments);
+  fragments = showOrHideAlgo();
+  console.log(fragments);
 }
 
 function main(aFragmentsDict) {
@@ -133,9 +138,9 @@ function main(aFragmentsDict) {
   hideCmdReceived('G');
   showCmdReceived('A');
   hideCmdReceived('A');
+  showCmdReceived('Z');
   sortFragmentsArray(allReceivedFragments);
-  const hiddenFragments = showOrHideAlgo();
-  console.log(hiddenFragments);
+  callAlgo();
 }
 
 module.exports.main = main;
