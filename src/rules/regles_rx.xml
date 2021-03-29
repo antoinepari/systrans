@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dynamique version="10.11">
+   <!-- L'ensemble des lots présentés ci-dessous peuvent s'afficher simultanément dans l'IHM -->
+   <Simultane>
+      <Lot Nom="ZhHeure" />
+      <Priorite>
+         <Lot Nom="ZhGsRvDSO" />
+         <Lot Nom="ZhGsRvAvanceRetardEncadrants" />
+         <Lot Nom="ZhGsRvAvanceRetard" />
+      </Priorite>
+
+      <Lot Nom="ZpRappelAlarme" />
+      <Lot Nom="ZpRappelMessageConducteur" />
+      <Lot Nom="ZpRappelInformationVoyageurs" />
+
+      <Lot Nom="ZsRappelAbsenceLiaisonPCC" />
+      <Lot Nom="ZsRappelModeAutonome" />
+      <Lot Nom="ZsRappelDefautLiaisonPupitreGirouette" />
+      <Lot Nom="ZsRappelIVVInhibe" />
+      <Lot Nom="ZsRappelDefautMaterielLocalisation" />
+      <Lot Nom="ZsRappelDefautLiaisonPostePhonie" />
+      <Lot Nom="ZsRappelAvRetAlternatif" />
+
+      <Lot Nom="ZrSignalementConducteur" />
+      <Lot Nom="ZrMessageVoyageurs" />
+
+      <!--
+         ZrInitMaintenance se superpose à ZrMaintenance en mise en service.
+         ZrReglagePhonie se superpose au bouton de maintenance en cas d'appel entrant.
+       -->
+      <Priorite>
+         <Lot Nom="ZrReglagePhonie" />
+         <Lot Nom="ZrInitMaintenance" />
+         <Lot Nom="ZrMaintenance" />
+      </Priorite>
+
+      <Lot Nom="ZrDemandeIntervention" />
+      <Lot Nom="ZrDemandeInterventionAttAcq" />
+
+      <Lot Nom="PhonieAppelNormal" />
+      <Lot Nom="PhonieAppelNormalAttAcq" />
+      <Lot Nom="PhonieAppelNormalAttCom" />
+      <Lot Nom="PhonieAppelUrgent" />
+      <Lot Nom="PhonieAppelUrgentAttAcq" />
+      <Lot Nom="PhonieAppelUrgentAttCom" />
+   </Simultane>
+
+<!--=================================================================================
+Les écrans listés ci-dessous sont classés par ordre de priorité.
+Du plus prioritaire (celui tout en haut) au moins prioritaire (celui tout en bas).
+==================================================================================-->
+   <Priorite>
+      <!-- Mise à jour des codes girouette - priorité supérieure à MiseAJourEnCours pour s'afficher par-dessus -->
+      <Lot Nom="MaintEquipementsGirouetteInfo" />
+
+      <!-- Redémarrage/Arrêt -->
+      <Lot Nom="MiseAJourEnCours" />
+      <Lot Nom="DiversMiseHorsTension" />
+      <Lot Nom="DiversRedemarrageEnCours" />
+
+      <!-- Probleme rencontré -->
+      <Lot Nom="DiversProblemeRencontre" />
+
+      <!-- Fonction non implémentée -->
+      <Lot Nom="DiversNonImplemente" />
+
+      <!-- Initialisation ou Mise en service, puis écran de Démarrage masquant l'init des autres modules (d'où la priorité si importante) -->
+      <Lot Nom="InitSaisieCodeErrone" />
+      <Lot Nom="InitSaisieCode" />
+      <Lot Nom="InitDemandeRecommencer" />
+      <Lot Nom="InitProblemeConducteur" />
+      <Lot Nom="InitSaisieNumParcInconnu" />
+      <Lot Nom="InitSaisieNumParc" />
+      <Lot Nom="InitConfigCapteursLocDR" />
+      <Lot Nom="InitConfigCapteursLocSaisieVrefOdo" />
+      <Lot Nom="InitConfigCapteursLocOdo" />
+      <Lot Nom="InitConfigCapteursLoc" />
+      <Lot Nom="InitPolarite" />
+      <Lot Nom="InitSelectionCE" />
+      <Lot Nom="InitErreurDonnees" />
+      <Lot Nom="InitDemandeDonnees" />
+      <Lot Nom="InitDemandeHeure" />
+      <Lot Nom="InitProgression" />
+
+      <!-- Phonie -->
+      <Lot Nom="PhonieAppelEntrant" />
+      <Lot Nom="PhonieConfirmeDmdAppel" />
+
+      <!-- Messageries -->
+      <Lot Nom="MsgCondAucunMsg" />
+      <Lot Nom="MsgCondConsultationDetaillee" />
+      <Lot Nom="MsgCondActivation" />
+      <Lot Nom="MsgCondConsultation" />
+
+      <!-- Information voyageurs -->
+      <Lot Nom="MsgIvvConsultationVide" />
+      <Lot Nom="MsgIvvConsultationDetail" />
+      <Lot Nom="MsgIvvConsultation" />
+      <Lot Nom="MsgIvvDiffusion" />
+      <Lot Nom="MsgIvvChoixMnemo" />
+      <Lot Nom="MsgIvvChoixType" />
+      <Lot Nom="CorrespIvvConsultationVide" />
+      <Lot Nom="CorrespIvvConsultation" />
+
+      <!-- Signalements -->
+      <Lot Nom="SigReponseNegative" />
+      <Lot Nom="SigReponsePositive" />
+      <Lot Nom="SigAttenteReponse" />
+      <Lot Nom="SigChoixEtEnvoi" />
+      <Lot Nom="SigAccueil" />
+
+      <!-- Maintenance - MdP -->
+      <Lot Nom="MaintSaisieCodeErrone" />
+      <Lot Nom="MaintSaisieCode" />
+
+      <!-- Maintenance - Mise à jour -->
+      <Lot Nom="MaintMiseAJourLivraisonTestConfirmRedemarrage" />
+      <Lot Nom="MaintMiseAJourDesactivationLivraisonTest" />
+      <Lot Nom="MaintMiseAJourSaisieLivraisonTest" />
+      <Lot Nom="MaintMiseAJourEchecSynchroFtp" />
+      <Lot Nom="MaintMiseAJourEchecSynchroUsb" />
+      <Lot Nom="MaintMiseAJourResultatSynchro" />
+      <Lot Nom="MaintMiseAJourSynchroEnCours" />
+      <Lot Nom="MaintMiseAJourSynchroFtp" />
+      <Lot Nom="MaintMiseAJourSynchroUsb" />
+
+      <!-- Maintenance - Mise au point -->
+      <Lot Nom="MaintMiseAuPointPrioriteFeuxSelectionApproche" />
+      <Lot Nom="MaintMiseAuPointPrioriteFeuxSaisie" />
+      <Lot Nom="MaintMiseAuPointPrioriteFeux" />
+      <Lot Nom="MaintMiseAuPointEnregistrementRejeuEchec" />
+      <Lot Nom="MaintMiseAuPointEnregistrementRejeu" />
+      <Lot Nom="MaintMiseAuPointDechargementEchec" />
+      <Lot Nom="MaintMiseAuPointDechargementEnCours" />
+      <Lot Nom="MaintMiseAuPointDechargementTracesRapport" />
+      <Lot Nom="MaintMiseAuPointValidationArretRedemarrage" />
+      <Lot Nom="MaintMiseAuPointArretRedemarrage" />
+
+      <!-- Maintenance - Localisation -->
+      <Lot Nom="MaintLocalisationGyrometre" />
+      <Lot Nom="MaintLocalisationOdometre" />
+      <Lot Nom="MaintLocalisationGPS" />
+
+      <!-- Maintenance - Test Communication -->
+      <Lot Nom="MaintTestCommunicationVolumeTransfertDonneesDetail" />
+      <Lot Nom="MaintTestCommunicationListeVolumeTransfertDonnees" />
+      <Lot Nom="MaintTestCommunicationEtatEthernet" />
+      <Lot Nom="MaintTestCommunicationProbleme" />
+      <Lot Nom="MaintTestCommunicationEmissionEcho" />
+      <Lot Nom="MaintTestCommunicationResultatConnexionFTP" />
+      <Lot Nom="MaintTestCommunicationTestEncours" />
+      <Lot Nom="MaintTestCommunicationPhonieGsmModificationNum" />
+      <Lot Nom="MaintTestCommunicationPhonieGsm" />
+      <Lot Nom="MaintTestCommunicationTestMediaParametres" />
+      <Lot Nom="MaintTestCommunicationTestMediaCommun" />
+
+      <!-- Maintenance - Equipements -->
+      <Lot Nom="MaintEquipementsJournalAlarmes" />
+      <Lot Nom="MaintEquipementsTestTFT" />
+      <Lot Nom="MaintEquipementsTestBlueChips" />
+      <Lot Nom="MaintEquipementsTestSivExterne" />
+      <Lot Nom="MaintEquipementsInhibitionIvv" />
+      <Lot Nom="MaintEquipementsBillettique" />
+      <Lot Nom="MaintEquipementsVideoSurveillance" />
+      <Lot Nom="MaintEquipementsGirouetteSaisieCode" />
+      <Lot Nom="MaintEquipementsGirouette" />
+      <Lot Nom="MaintEquipementsBLProbleme" />
+      <Lot Nom="MaintEquipementsBLEnCours" />
+      <Lot Nom="MaintEquipementsBL" />
+      <Lot Nom="MaintEquipementsTestsUsineLS" />
+      <Lot Nom="MaintEquipementsBusFms" />
+      <Lot Nom="MaintEquipementsComptagePassagersGlobal" />
+      <Lot Nom="MaintEquipementsComptagePassagersCellules" />
+      <Lot Nom="MaintEquipementsLecteurEtiq" />
+      <Lot Nom="MaintEquipementsNonPresent" />
+
+      <!-- Maintenance - Consultation de la configuration -->
+      <Lot Nom="MaintConsultationConfElementsVersionnes" />
+      <Lot Nom="MaintConsultationConfVersionsUtilisees" />
+      <Lot Nom="MaintConsultationConfCaracVehicule" />
+      <Lot Nom="MaintConsultationConfOccupationDisque" />
+
+      <!-- Maintenance - Audio SCAPIN -->
+      <Lot Nom="MaintAudioScapinTestsEnCours" />
+      <Lot Nom="MaintAudioScapinTests" />
+
+      <!-- Maintenance - Reglage Gains Audio -->
+      <Lot Nom="MaintReglageGainsAudioCAVAttenteMesure" />
+      <Lot Nom="MaintReglageGainsAudioCAVMesureSr" />
+      <Lot Nom="MaintReglageGainsAudioCAVSaisieSr" />
+      <Lot Nom="MaintReglageGainsAudioCAVParametresDetail" />
+      <Lot Nom="MaintReglageGainsAudioCAVParametres" />
+      <Lot Nom="MaintReglageGainsAudioTestsEnCours" />
+      <Lot Nom="MaintReglageGainsAudioTests" />
+      <Lot Nom="MaintReglageGainsAudioSaisie" />
+      <Lot Nom="MaintReglageGainsAudioVolumesSortie" />
+      <Lot Nom="MaintReglageGainsAudioEquilibrageEntreesSyntheseSonore" />
+      <Lot Nom="MaintReglageGainsAudioSensibilitesEntrees" />
+
+      <!-- Maintenance - Mise en Service -->
+      <Lot Nom="MaintMiseEnServiceConfigCapteursLoc" />
+      <Lot Nom="MaintMiseEnServiceNumParcInconnu" />
+      <Lot Nom="MaintMiseEnServiceNumParcAucuneCaract" />
+      <Lot Nom="MaintMiseEnServiceNumParcCaracteristiques" />
+      <Lot Nom="MaintMiseEnServiceSaisieNumParc" />
+      <Lot Nom="MaintMiseEnServiceNumParc" />
+      <Lot Nom="MaintMiseEnServiceDemontageCalcFin" />
+      <Lot Nom="MaintMiseEnServiceDemontageCalcEchec" />
+      <Lot Nom="MaintMiseEnServiceDemontageCalcAttenteFin" />
+      <Lot Nom="MaintMiseEnServiceDemontageCalcAttenteUsb" />
+      <Lot Nom="MaintMiseEnServiceDemontageCalc" />
+      <Lot Nom="MaintMiseEnServicePolarite" />
+      <Lot Nom="MaintMiseEnServiceMiseAHeure" />
+
+      <!-- Maintenance - Tests Guides -->
+      <Lot Nom="MaintTestsGuidesRapport" />
+      <Lot Nom="MaintTestsGuidesSaisieInfo" />
+      <Lot Nom="MaintTestsGuidesEtat" />
+
+      <!-- Maintenance - Sous Menu -->
+      <Lot Nom="MaintSousMenuMiseEnService" />
+      <Lot Nom="MaintSousMenuReglageGainsAudio" />
+      <Lot Nom="MaintSousMenuAudioScapin" />
+      <Lot Nom="MaintSousMenuConsultationConf" />
+      <Lot Nom="MaintSousMenuEquipements" />
+      <Lot Nom="MaintSousMenuTestCommunication" />
+      <Lot Nom="MaintSousMenuTestCommunicationReduit" />
+      <Lot Nom="MaintSousMenuLocalisation" />
+      <Lot Nom="MaintSousMenuMiseAuPoint" />
+      <Lot Nom="MaintSousMenuMiseAJour" />
+
+      <!-- Maintenance - Menu -->
+      <Lot Nom="MaintMenuHorsVoitureVLTL" />
+      <Lot Nom="MaintMenuVCVLParcours" />
+
+      <!-- Réglages conducteur -->
+      <Lot Nom="ReglagesConducteurPhonie" />
+      <Lot Nom="ReglagesConducteurPupitre" />
+      <Lot Nom="ReglagesConducteurMenu" />
+
+      <!-- GsRv - Divers lots prioritaires -->
+      <Lot Nom="GsRvDefautElementVersionne" />
+      <Lot Nom="GsRvServiceDejaEnCours" />
+      <Lot Nom="GsRvAvanceRetardErreur" />
+
+      <!-- Pds - Priorité supérieure à GsRv -->
+      <Lot Nom="PdsRefusee" />
+      <Lot Nom="PdsLiaisonPCKo" />
+      <Lot Nom="PdsConfirmation" />
+
+      <!-- Releve/Remplacement -->
+      <Lot Nom="ReleveErreur" />
+      <Lot Nom="ReleveErrHabilitation" />
+      <Lot Nom="ReleveErrInconnu" />
+      <Lot Nom="ReleveErrMotDePasse" />
+      <Lot Nom="ReleveSaisieMotPasse" />
+      <Lot Nom="ReleveSaisieMatricule" />
+      <Lot Nom="ReleveInviteIdentificationLiaisonBillOk" />
+      <Lot Nom="ReleveInviteIdentificationLiaisonBillKo" />
+      <Lot Nom="ReleveInviteDesidentificationLiaisonBillOk" />
+      <Lot Nom="ReleveInviteDesidentificationLiaisonBillKo" />
+
+      <!-- Regul -->
+      <Lot Nom="GsRvConsultationManoeuvreRegulationDetail" />
+      <Lot Nom="GsRvConsultationManoeuvreRegulation" />
+
+      <!-- Alarme -->
+      <Lot Nom="AlarmeSignalisation" />
+      <Lot Nom="AlarmeListeVide" />
+      <Lot Nom="GsRvConsultationAlarmes" />
+
+      <!-- Releve/Remplacement via Menu -->
+      <Lot Nom="ReleveMenuDesidentificationLiaisonBillOk" />
+      <Lot Nom="ReleveMenuDesidentificationLiaisonBillKo" />
+
+      <!-- Consigne concernant les croisements -->
+      <Lot Nom="SuiviCroisement" />
+
+      <!-- Evenements de course -->
+      <Lot Nom="SuiviEvenementCourseReleve" />
+      <Lot Nom="SuiviEvenementCourseCorrespRegul" />
+      <Lot Nom="SuiviEvenementPresentationDeviation" />
+      <Lot Nom="SuiviEvenementSuppressionDeviation" />
+      <Lot Nom="SuiviEvenementCourseReleveDeviee" />
+      <Lot Nom="SuiviEvenementCourseChangementService" />
+      <Lot Nom="SuiviEvenementCourseRegulationListe" />
+
+      <!-- GsRv - Comptage Passagers -->
+      <Simultane>
+         <Lot Nom="GsRvSaisieComptagePassagersMontees" />
+         <Lot Nom="GsRvSaisieComptagePassagersDescentes" />
+      </Simultane>
+
+      <!-- GsRv - Fin de service -->
+      <Lot Nom="GsRvFinService" />
+
+      <!-- GsRv - Interruption de parcours -->
+      <Lot Nom="GsRvInterruptionParcoursErreur" />
+      <Lot Nom="GsRvInterruptionParcours" />
+
+      <!-- GsRv - Choix de la course courante -->
+      <Lot Nom="GsRvSelectionCourseErreur" />
+      <Lot Nom="GsRvSelectionCourse" />
+
+      <!-- GsRv - Gestion de service -->
+      <Lot Nom="GsRvMenuGestionService" />
+
+      <!-- GsRv - Consultation Encadrants -->
+      <Lot Nom="GsRvConsultationEncadrantsComPc" />
+      <Lot Nom="GsRvConsultationEncadrantsErreur" />
+      <Lot Nom="GsRvConsultationEncadrants" />
+
+      <!-- GsRv - Consultation Connexions -->
+      <Lot Nom="GsRvConsultationConnexions" />
+
+      <!-- GsRv - Consultation Relèves -->
+      <Lot Nom="GsRvConsultationProchaineReleve" />
+
+      <!-- GsRv - Consultation Correspondance régulée -->
+      <Lot Nom="GsRvConsultationCorrespondanceRegulee" />
+      <Lot Nom="GsRvConsultationCorrespondanceReguleeAucune" />
+
+      <!-- GsRv - Consultation Déviations -->
+      <Lot Nom="GsRvConsultationDeviationsAucune" />
+      <Lot Nom="GsRvConsultationDeviationsDetail" />
+      <Lot Nom="GsRvConsultationDeviations" />
+
+      <!-- GsRv - Consultations -->
+      <Lot Nom="GsRvConsultationVCErreur" />
+      <Lot Nom="GsRvConsultationCourseCourante" />
+      <Lot Nom="GsRvConsultationVCDetail" />
+      <Lot Nom="GsRvConsultationVC" />
+
+      <!-- GsRv - Menu-->
+      <Lot Nom="GsRvMenuInformationVoyageurs" />
+      <Lot Nom="GsRvMenuConsultService" />
+      <Lot Nom="GsRvMenuMessagerie" />
+      <Lot Nom="GsRvMenuConducteur" />
+      <Lot Nom="GsRvMenuConducteurHorsVoiture" />
+
+      <!-- Suivi -->
+      <Lot Nom="SuiviAttenteAcqGsFde" />
+      <Lot Nom="SuiviAttenteReleve" />
+
+      <!-- GsRv : Suivi en cours de réalisation -->
+      <Lot Nom="GsRvInfosParcoursDetail" />
+
+      <Simultane>
+         <Priorite>
+            <Lot Nom="GsRvDSOEnRetard" />
+            <Lot Nom="GsRvDSODepartImmediat" />
+            <Lot Nom="GsRvDSOEnAvance" />
+            <Lot Nom="GsRvAvanceRetard" />
+            <Lot Nom="GsRvAvanceRetardBgEncadrants" />
+            <Lot Nom="GsRvAvanceRetardBgEncadrantsInconnu" />
+            <Lot Nom="GsRvAvanceRetardVide" />
+         </Priorite>
+
+         <Priorite>
+            <Lot Nom="GsRvCartographie" PreCree="1"/>
+            <Lot Nom="GsRvSynoptique" PreCree="1"/>
+         </Priorite>
+
+         <Lot Nom="GsRvInfosParcoursCourse" PreCree="1"/>
+         <!-- GsRv - Comptage Passagers -->
+         <Lot Nom="GsRvInfosComptagePassagersUp" PreCree="1"/>
+         <Lot Nom="GsRvInfosComptagePassagersUpDown" PreCree="1"/>
+      </Simultane>
+
+      <!-- Pds -->
+      <Lot Nom="PdsEcranAccueilVehiculeNonSae" />
+      <Lot Nom="PdsAttenteReponsePC" />
+      <Lot Nom="PdsAttenteValidation" />
+      <Lot Nom="PdsSaisieParcours" PreCree="1"/>
+      <Lot Nom="PdsSaisieService" PreCree="1"/>
+      <Lot Nom="PdsChoixParcours" PreCree="1"/>
+      <Lot Nom="PdsChoixLigne" PreCree="1"/>
+
+      <!-- Agent -->
+      <Lot Nom="AgentErrHabilitation" />
+      <Lot Nom="AgentErrInconnu" />
+      <Lot Nom="AgentErrMotDePasse" />
+      <Lot Nom="AgentSaisieMotPasse" PreCree="1"/>
+      <Lot Nom="AgentSaisieMatricule" PreCree="1"/>
+
+      <!-- Divers - Probleme affiché sur l'écran d'accueil -->
+      <Lot Nom="DiversProblemeAccueil" />
+
+      <!-- Pds - Accueil -->
+      <Lot Nom="PdsEcranAccueilBillettiqueServiceEnCours" PreCree="1"/>
+      <Lot Nom="PdsEcranAccueil" PreCree="1"/>
+
+      <Lot Nom="LotTestMultilingue" />
+      <!-- Navineo non connecté -->
+      <Lot Nom="NavineoDeconnecte" />
+      <Lot Nom="NavineoArret" />
+
+<!--=================================================================================
+      Anciens lots
+==================================================================================-->
+   <!--Lot Nom="MaintPeripheriques" /-->
+   </Priorite>
+</Dynamique>
