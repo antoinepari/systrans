@@ -10,7 +10,7 @@ function getName(xmlLine) {
   return xmlLine.substring(start, i);
 }
 
-function buildPriorityArray(xmlDataTranslated) {
+function buildPriorityDict(xmlDataTranslated) {
   let priorityCpt = 0;
   let simultaneousCpt = 0;
   let fragmentNb = 0;
@@ -78,6 +78,10 @@ function buildPriorityArray(xmlDataTranslated) {
       if (line.includes('<Simultaneous')) {
         nodePath = nodePath.substring(0, nodePath.length - 3);
         allNodesFound.pop();
+        // When a Simultaneous node is closed, check if it was one of layer 1 to set isFirstLayer to true
+        if (allNodesFound.length === 1 && allNodesFound[0] === 'Priority') {
+          isFirstLayer = true;
+        }
         return true;
       }
     }
@@ -86,7 +90,7 @@ function buildPriorityArray(xmlDataTranslated) {
 }
 
 function readRules() {
-  const fragmentsDict = buildPriorityArray(xmlDataTranslated);
+  const fragmentsDict = buildPriorityDict(xmlDataTranslated);
   // console.log(fragmentsDict);
   return fragmentsDict;
 }

@@ -118,6 +118,7 @@ function main(aFragmentsDict) {
   addShowFragment('C');
   addShowFragment('H');
   addShowFragment('G');
+  // console.log(allReceivedFragments)
   // addShowFragment('A');
   sortFragmentsArray(allReceivedFragments);
   const hiddenFragments = showOrHideAlgo();

@@ -498,6 +498,41 @@ const xmlDataTranslated1 = `<?xml version="1.0" encoding="utf-8"?>
       <Fragment Name="NavineoArret"/>
    </Priority>
 </Dynamic>`;
+const xmlDataTranslated_Double_simu = `<?xml version="1.0" encoding="utf-8"?>
+<Dynamic version="10.11">
+   <Priority>
+      <!-- Redémarrage/Arrêt -->
+      <Fragment Name="A"/>
+      <Fragment Name="B"/>
+
+      <Simultaneous>
+        <Fragment Name="C"/>
+
+         <Priority>
+            <Fragment Name="D" PreBuilt="1"/>
+            <Fragment Name="E" PreBuilt="1"/>
+         </Priority>
+         <Priority>
+            <Fragment Name="F" PreBuilt="1"/>
+            <Fragment Name="G" PreBuilt="1"/>
+            <Fragment Name="G1" PreBuilt="1"/>
+         </Priority>
+
+         <!-- GsRv - Comptage Passagers -->
+         <Fragment Name="H" PreBuilt="1"/>
+         <Fragment Name="I" PreBuilt="1"/>
+      </Simultaneous>
+      <Simultaneous>
+        <Fragment Name="Z"/>
+        <Fragment Name="W"/>
+      </Simultaneous>
+
+
+      <!-- Navineo non connecté -->
+      <Fragment Name="J"/>
+      <Fragment Name="K"/>
+   </Priority>
+</Dynamic>`;
 const xmlDataTranslated = `<?xml version="1.0" encoding="utf-8"?>
 <Dynamic version="10.11">
    <Priority>
