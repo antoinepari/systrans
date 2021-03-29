@@ -114,19 +114,20 @@ function hideCmdReceived(fragmentName) {
 function callAlgo() {
   // Simultaneous part on layer 1
   const simuFragments = showOrHideAlgo(0);
-  console.log(simuFragments)
+  // console.log(simuFragments)
   // Normal execution by researching the maxCode
   const fragments = showOrHideAlgo();
-  console.log(fragments);
-  console.log();
+  // console.log(fragments);
+  // console.log();
 
   // If fragments === simuFragments it means that only fragments from simu layer 1 have to be displayed because the maxCode found was 0
   if (JSON.stringify(fragments) === JSON.stringify(simuFragments)) {
     console.log(fragments.visibleFragments, fragments.unvisibleFragments)
   } else {
-    const unvisibleSimuFragments = new Set(simuFragments.visibleFragments);
+    const visibleSimuFragments = new Set(simuFragments.visibleFragments);
     const allVisibleFragments = simuFragments.visibleFragments.concat(fragments.visibleFragments);
-    const allUnvisibleFragments = fragments.unvisibleFragments.filter(x => !unvisibleSimuFragments.has(x));
+    // Remove all SIMU visible fragments from fragments.unvisibleFragments
+    const allUnvisibleFragments = fragments.unvisibleFragments.filter(x => !visibleSimuFragments.has(x));
     console.log(allVisibleFragments);
     console.log(allUnvisibleFragments);
   }
@@ -146,7 +147,7 @@ function main(aFragmentsDict) {
   /* showCmdReceived('Z');
   showCmdReceived('W'); */
 
-  showCmdReceived('K');
+  /* showCmdReceived('K');
   showCmdReceived('J');
   showCmdReceived('G1');
   showCmdReceived('E');
@@ -159,7 +160,21 @@ function main(aFragmentsDict) {
   showCmdReceived('A');
   hideCmdReceived('A');
   showCmdReceived('Z');
-  showCmdReceived('W');
+  showCmdReceived('W'); */
+
+  showCmdReceived('ZpRappelAlarme');
+  showCmdReceived('ZsRappelAbsenceLiaisonPCC');
+  showCmdReceived('ZsRappelDefautMaterielLocalisation');
+  showCmdReceived('ZhHeure');
+  showCmdReceived('ZrSignalementConducteur');
+  showCmdReceived('ZrMessageVoyageurs');
+  showCmdReceived('ZrMaintenance');
+  showCmdReceived('ZrDemandeIntervention');
+  showCmdReceived('PdsEcranAccueil');
+  showCmdReceived('GsRvSynoptique');
+  showCmdReceived('GsRvInfosParcoursCourse');
+  showCmdReceived('GsRvAvanceRetardVide');
+  // showCmdReceived('GsRvMenuConducteur'); // Decomment to get menu above and comment to get PDS
   sortFragmentsArray(allReceivedFragments);
   callAlgo();
 }

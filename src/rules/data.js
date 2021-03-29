@@ -8,7 +8,7 @@ const rulesCfg = [
   },
 ];
 
-const xmlDataTranslated_ = `<?xml version="1.0" encoding="utf-8"?>
+const xmlDataTranslated = `<?xml version="1.0" encoding="utf-8"?>
 <Dynamic version="10.11">
    <!-- L'ensemble des lots présentés ci-dessous peuvent s'afficher simultanément dans l'IHM -->
    <Simultaneous>
@@ -533,7 +533,7 @@ const xmlDataTranslated_Double_simu = `<?xml version="1.0" encoding="utf-8"?>
       <Fragment Name="K"/>
    </Priority>
 </Dynamic>`;
-const xmlDataTranslated = `<?xml version="1.0" encoding="utf-8"?>
+const xmlDataTranslated98 = `<?xml version="1.0" encoding="utf-8"?>
 <Dynamic version="10.11">
   <Simultaneous>
     <Fragment Name="Z"/>
