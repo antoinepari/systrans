@@ -567,6 +567,13 @@ const xmlDataTranslated = `<?xml version="1.0" encoding="utf-8"?>
       <Fragment Name="K"/>
    </Priority>
 </Dynamic>`;
+const xmlDataTranslated00 = `<?xml version="1.0" encoding="utf-8"?>
+<Dynamic version="10.11">
+  <Simultaneous>
+    <Fragment Name="Z"/>
+    <Fragment Name="W"/>
+  </Simultaneous>
+</Dynamic>`;
 
 module.exports.rulesCfg = rulesCfg;
 module.exports.xmlDataTranslated = xmlDataTranslated;

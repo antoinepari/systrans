@@ -35,10 +35,9 @@ function showOrHideAlgo(aMaxCode) {
     return null;
   });
 
-  // If only one fragment => algo stops
-  if (updatedFragments.length === 1) {
-    visibleFragments.push(updatedFragments[0].name);
-    return {visibleFragments, unvisibleFragments};;
+  // When there is no fragment to displayed, stop the algo
+  if (updatedFragments.length === 0) {
+    return {visibleFragments: [], unvisibleFragments};;
   }
 
   // If it remains multiple fragments => we need to check if all can be displayed or not
@@ -98,8 +97,10 @@ function showOrHideAlgo(aMaxCode) {
  * @param {String} fragmentName - Fragment's name
  */
 function showCmdReceived(fragmentName) {
-  const { code, pos, priority } = fragmentsDict[fragmentName];
-  allReceivedFragments.push({ name: fragmentName, code, pos, priority });
+  if (fragmentsDict[fragmentName]) {
+    const { code, pos, priority } = fragmentsDict[fragmentName];
+    allReceivedFragments.push({ name: fragmentName, code, pos, priority });
+  }
 }
 
 /**
@@ -111,10 +112,24 @@ function hideCmdReceived(fragmentName) {
 }
 
 function callAlgo() {
-  let fragments = showOrHideAlgo(0);
+  // Simultaneous part on layer 1
+  const simuFragments = showOrHideAlgo(0);
+  console.log(simuFragments)
+  // Normal execution by researching the maxCode
+  const fragments = showOrHideAlgo();
   console.log(fragments);
-  fragments = showOrHideAlgo();
-  console.log(fragments);
+  console.log();
+
+  // If fragments === simuFragments it means that only fragments from simu layer 1 have to be displayed because the maxCode found was 0
+  if (JSON.stringify(fragments) === JSON.stringify(simuFragments)) {
+    console.log(fragments.visibleFragments, fragments.unvisibleFragments)
+  } else {
+    const unvisibleSimuFragments = new Set(simuFragments.visibleFragments);
+    const allVisibleFragments = simuFragments.visibleFragments.concat(fragments.visibleFragments);
+    const allUnvisibleFragments = fragments.unvisibleFragments.filter(x => !unvisibleSimuFragments.has(x));
+    console.log(allVisibleFragments);
+    console.log(allUnvisibleFragments);
+  }
 }
 
 function main(aFragmentsDict) {
@@ -122,9 +137,14 @@ function main(aFragmentsDict) {
   console.log();
   fragmentsDict = aFragmentsDict;
 
-  // addShowFragment('B');
-  // addShowFragment('A');
-  // addShowFragment('E');
+  // Only PRIORITY fragments
+  /* showCmdReceived('B');
+  showCmdReceived('A');
+  showCmdReceived('E'); */
+
+  // Only SIMU fragments
+  /* showCmdReceived('Z');
+  showCmdReceived('W'); */
 
   showCmdReceived('K');
   showCmdReceived('J');
@@ -139,6 +159,7 @@ function main(aFragmentsDict) {
   showCmdReceived('A');
   hideCmdReceived('A');
   showCmdReceived('Z');
+  showCmdReceived('W');
   sortFragmentsArray(allReceivedFragments);
   callAlgo();
 }
