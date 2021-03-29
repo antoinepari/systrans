@@ -16,6 +16,7 @@ function sortFragmentsArray(array) {
 
 /**
  * This algo will determine only the fragments to hide
+ * @returns {Array} Array with all name of fragments which are not visible but still at show
  */
 function showOrHideAlgo() {
   let hiddenFragments = [];
@@ -94,10 +95,21 @@ function showOrHideAlgo() {
   return hiddenFragments;
 }
 
-function addShowFragment(fragmentName) {
+/**
+ * Add a fragment inside allReceivedFragments when a Show command is received
+ * @param {String} fragmentName - Fragment's name
+ */
+function showCmdReceived(fragmentName) {
   const { code, pos, priority } = fragmentsDict[fragmentName];
   allReceivedFragments.push({ name: fragmentName, code, pos, priority });
-  // showOrHideAlgo();
+}
+
+/**
+ * Remove a fragment from allReceivedFragments when a Hide command is received
+ * @param {String} fragmentName - Fragment's name
+ */
+function hideCmdReceived(fragmentName) {
+  allReceivedFragments = allReceivedFragments.filter(fragment => fragment.name !== fragmentName)
 }
 
 function main(aFragmentsDict) {
@@ -109,17 +121,18 @@ function main(aFragmentsDict) {
   // addShowFragment('A');
   // addShowFragment('E');
 
-  addShowFragment('K');
-  addShowFragment('J');
-  addShowFragment('G1');
-  addShowFragment('E');
-  addShowFragment('D');
-  addShowFragment('F');
-  addShowFragment('C');
-  addShowFragment('H');
-  addShowFragment('G');
-  // console.log(allReceivedFragments)
-  // addShowFragment('A');
+  showCmdReceived('K');
+  showCmdReceived('J');
+  showCmdReceived('G1');
+  showCmdReceived('E');
+  showCmdReceived('D');
+  showCmdReceived('F');
+  showCmdReceived('C');
+  showCmdReceived('H');
+  showCmdReceived('G');
+  hideCmdReceived('G');
+  showCmdReceived('A');
+  hideCmdReceived('A');
   sortFragmentsArray(allReceivedFragments);
   const hiddenFragments = showOrHideAlgo();
   console.log(hiddenFragments);
